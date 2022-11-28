@@ -10,7 +10,7 @@ import java.util.List;
  * Simple brute force implementation
  *
  */
-public class ReadSymptomDataFromFile implements ISymptomReader {
+public class SymptomReader implements ISymptomReader {
 
 	private String filepath;
 	
@@ -18,13 +18,13 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
 	 */
-	public ReadSymptomDataFromFile (String filepath) {
+	public SymptomReader(String filepath) {
 		this.filepath = filepath;
 	}
 	
 	@Override
 	public List<String> GetSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> symptomList = new ArrayList<String>();
 		
 		if (filepath != null) {
 			try {
@@ -32,7 +32,18 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				String line = reader.readLine();
 				
 				while (line != null) {
-					result.add(line);
+					// Trim symptom names, convert to lowercase and reject if not alphanumeric.
+					// Reject empty lines.
+					line = line.trim();
+					line = line.toLowerCase();
+					boolean isAlphaNumeric = true;
+					for (int i=0; i<line.length(); i++) {
+						if (line.charAt(i)!=' ' && !Character.isLetterOrDigit(line.charAt(i)))
+							isAlphaNumeric = false;
+					}
+					if (isAlphaNumeric && !line.isEmpty()) {
+						symptomList.add(line);
+					}
 					line = reader.readLine();
 				}
 				reader.close();
@@ -41,7 +52,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 			}
 		}
 		
-		return result;
+		return symptomList;
 	}
 
 }
