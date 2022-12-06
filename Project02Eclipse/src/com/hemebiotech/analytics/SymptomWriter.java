@@ -10,8 +10,7 @@ import java.util.Map;
  */
 public class SymptomWriter implements ISymptomWriter {
 
-	private Map<String, Integer> symptomMap;
-	private String filepath;
+	private final String filepath;
 
 	/**
 	 *

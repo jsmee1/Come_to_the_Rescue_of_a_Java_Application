@@ -1,11 +1,20 @@
 package com.hemebiotech.analytics;
 
 import java.util.*;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
+/**
+ * Symptom analysis tools
+ * countSymptoms and sortSymptoms methods
+ */
 public class SymptomUtils {
+    /**
+     * Count symptoms
+     * @param symptomList - the list of symptoms
+     * @return the occurrence of each symptom
+     */
     public static Map<String, Integer> countSymptoms(List<String> symptomList) {
-        Map<String, Integer> myMap = new HashMap<String, Integer>();
+        Map<String, Integer> myMap = new HashMap<>();
         for (String symptom : symptomList) {
             Integer value = myMap.get(symptom);
             if (value == null)
@@ -15,17 +24,14 @@ public class SymptomUtils {
         }
         return myMap;
     }
-        // Sort symptoms by name
+
+    /**
+     * Sort symptoms by name
+     * @param symptomMap - list of symptom occurrences
+     * @return list of symptom occurrences sorted by name
+     */
     public static TreeMap<String, Integer> sortSymptoms(Map<String, Integer> symptomMap) {
- /*       Map<String, Integer> mySortedMap = symptomMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new)); */
-        // Copy the Map into a TreeMap to sort it
-        TreeMap<String, Integer> mySortedMap = new TreeMap<String, Integer>();
-//        mySortedMap = (TreeMap<String, Integer>) symptomMap;
-        mySortedMap.putAll(symptomMap);
-        return mySortedMap;
+        return new TreeMap<String, Integer>(symptomMap);
     }
 
 }

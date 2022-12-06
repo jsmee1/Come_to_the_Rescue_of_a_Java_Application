@@ -2,21 +2,23 @@ package com.hemebiotech.analytics;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
+/**
+ * New version of AnalyticsCounter
+ * Count symptoms and sort them alphabetically
+ */
 public class MyAnalyticsCounter {
-
-	public static void main(String args[]) throws Exception {
+	/**
+	 *
+	 * @param  args - default unused parameter
+	 */
+	public static void main(String[] args) {
 
 		List<String> symptomList;
 		Map<String, Integer> symptomMap;
 	//	Read symptoms into a list
 		SymptomReader reader = new SymptomReader("symptoms.txt");
 		symptomList = reader.GetSymptoms();
-	/*	for (String symptom : symptomList) {
-			System.out.println(symptom);
-		} */
 		if (symptomList.isEmpty())
 			System.out.println("No symptoms found");
 		else {

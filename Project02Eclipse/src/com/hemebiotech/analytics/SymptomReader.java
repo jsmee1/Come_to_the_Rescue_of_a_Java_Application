@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class SymptomReader implements ISymptomReader {
 
-	private String filepath;
+	private final String filepath;
 	
 	/**
 	 * 
@@ -24,7 +25,7 @@ public class SymptomReader implements ISymptomReader {
 	
 	@Override
 	public List<String> GetSymptoms() {
-		ArrayList<String> symptomList = new ArrayList<String>();
+		ArrayList<String> symptomList = new ArrayList<>();
 		
 		if (filepath != null) {
 			try {
@@ -47,6 +48,8 @@ public class SymptomReader implements ISymptomReader {
 					line = reader.readLine();
 				}
 				reader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("File \"" + filepath + "\" not found.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

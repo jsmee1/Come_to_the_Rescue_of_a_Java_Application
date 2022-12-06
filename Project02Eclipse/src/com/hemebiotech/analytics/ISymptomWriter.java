@@ -7,5 +7,9 @@ import java.util.Map;
  *
  */
 public interface ISymptomWriter {
+	/**
+	 *
+	 * @param symptomMap - write symptoms to file
+	 */
 	void putSymptoms(Map<String, Integer> symptomMap);
 }
