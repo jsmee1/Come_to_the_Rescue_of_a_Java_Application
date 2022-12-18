@@ -16,12 +16,13 @@ public class MyAnalyticsCounter {
 
 		List<String> symptomList;
 		Map<String, Integer> symptomMap;
-	//	Read symptoms into a list
+	    // Read symptoms into a list, clean data and convert to lowercase
 		SymptomReader reader = new SymptomReader("symptoms.txt");
-		symptomList = reader.GetSymptoms();
+		symptomList = reader.getSymptoms();
 		if (symptomList.isEmpty())
 			System.out.println("No symptoms found");
 		else {
+			// Count symptoms, sort them alphabetically and write to file
 			symptomMap = SymptomUtils.countSymptoms(symptomList);
 			symptomMap = SymptomUtils.sortSymptoms(symptomMap);
 			SymptomWriter writer = new SymptomWriter("result.out");
